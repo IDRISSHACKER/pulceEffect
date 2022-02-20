@@ -1,0 +1,213 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background: linear-gradient(to top, #6a2587, #983ebd);
+    color: white;
+    font-family: "Poppins";
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html,body{
+    overflow-x: hidden;
+}
+
+
+.streamers{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    cursor: pointer;
+    user-select: none;
+}
+
+.streamers .streamer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.streamer:hover{
+    transform: scale(1.5);
+    z-index: 10;
+    transition: transform ease-in-out 300ms,
+    z-index ease-in-out 400ms;
+}
+
+.streamer .icon{
+    border: solid 2px rgb(119, 4, 148);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: transform ease-in-out 150ms ;
+}
+
+.streamer .icon img{
+    width: 200px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.streamer .name{
+    font-size: 1.2rem;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.streamer .number{
+    font-size: 1rem;
+    opacity: .6;
+    font-weight: 400;
+}
+
+.streamer:hover .icon::before{
+    opacity: 1;
+    transition: opacity linear 200ms;
+}
+
+.icon::before,
+.icon::after{
+    opacity: 0;
+    content: "";
+    position: absolute ;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 50%;
+    transition: all linear 0.3ms;
+}
+
+.streamer:hover .icon{
+    transform: translateY(-20%);
+    transition: all linear 0.3ms ease;
+}
+
+.streamer .icon:hover{
+     transform: scale(1.05);
+}
+
+.icon:hover::before{
+    background: #23013b;
+}
+
+.icon::before{
+    content: url("./twitch.svg");
+    background: #290346;
+    display: grid;
+    place-items: center;
+    z-index: 2;
+    transition: 
+        display 1s linear,
+        content 1.2s linear,
+        background 100ms linear;
+    backdrop-filter: blur(5px);
+}
+
+.icon:hover::after{
+    background: #140122;
+    z-index: 1;
+    animation: pulse 1.15s  infinite;
+    transition: animation linear ease-out ;
+    backdrop-filter: blur(5px);
+}
+
+@keyframes pulse {
+    0%{
+        transform: scale(1);
+        opacity: .75;
+        transition: all linear 0.3ms;
+    }
+    100%{
+        transform: scale(1.5);
+        opacity: 0;
+        transition: all linear 0.3ms;
+    }
+}
+
+@keyframes pulseIn {
+    25% {
+        opacity: 1;
+        transform: scale(0);
+        transition: all linear .3s;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(4);
+        transition: all linear .3s;
+    }
+}
+
+.pulse-img{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.pulse-img::before{
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    left: -200px;
+    top: -200px;
+    border: solid 26px rgb(255 255 255 / 30%);
+    background: rgb(255 255 255 / 15%);
+    box-sizing: border-box;
+    transition: all linear .3s;
+    animation: pulseIn 2s linear infinite;
+}
+
+@media screen and (max-width: 350px) {
+    .streamers .streamer img {
+        width: 150px !important;
+    }
+
+    .pulse-img {
+        width: 150px !important;
+        height: 150px !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .streamers{
+        flex-direction: column;
+    }
+
+    .streamers .streamer img{
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 912px) {
+    .streamers .streamer img {
+        width: 300px;
+    }
+
+    .pulse-img{
+        width: 300px;
+        height: 300px;
+    }
+}
